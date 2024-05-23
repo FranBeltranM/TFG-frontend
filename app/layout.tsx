@@ -41,9 +41,9 @@ export default function RootLayout({
             <div className='my-8 flex h-10 w-full flex-col items-center justify-center'>
               <p>
                 &copy; {new Date().getFullYear()}{' '}
-                {/* <a href='' className=''>
+                <a href='' className=''>
                   Fran Beltrán
-                </a> */}
+                </a>
               </p>
             </div>
           </footer>
