@@ -30,6 +30,6 @@
     "next.config.mjs",
     "postcss.config.cjs",
     "tailwind.config.ts",
-    "ecosystem.config.js"
+    "ecosystem.config.cjs"
   ]
 }
