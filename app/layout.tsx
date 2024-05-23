@@ -36,7 +36,7 @@ export default function RootLayout({
       >
         <Providers>
           <NavBar />
-          <main className='mb-auto pt-20'>{children}</main>
+          <main className='mb-auto px-4 pt-20 md:px-0'>{children}</main>
           <footer>
             <div className='my-8 flex h-10 w-full flex-col items-center justify-center'>
               <p>
