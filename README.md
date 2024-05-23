@@ -27,3 +27,9 @@ Si tienes preguntas o sugerencias sobre el proyecto, no dudes en contactarme por
 ---
 
 ¡Gracias por interesarte en este proyecto! Espero que encuentres útil y valioso el trabajo que se ha realizado.
+
+## Fuentes
+
+### Car Logos
+
+[https://www.carlogos.org/](https://www.carlogos.org/)
