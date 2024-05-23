@@ -2,8 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'TFG-WEB',
-      script: 'npm run build && npm run start',
-      watch: true,
+      script: 'npm run start',
       exec_mode: 'cluster',
       instances: 'max'
     }
