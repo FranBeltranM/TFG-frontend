@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { ActualOwner } from '@/app/ui/search/components/actual-owner'
 import { VehicleInfo } from '@/app/ui/search/components/vehicle-info'
 import { VehiclePlateInfo } from '@/app/ui/search/components/vehicle-plate-info'
+import { VehicleTransfers } from '@/app/ui/search/components/vehicle-transfers'
 
 // Domain
 import { type SearchParams } from '@/app/modules/shared/domain/types'
@@ -33,7 +34,7 @@ export default async function SearchPage({
   } = vehicleResponse.data
 
   return (
-    <main className='mx-auto mt-8 flex max-w-md flex-col space-y-8'>
+    <main className='mx-auto mt-8 flex max-w-screen-md flex-col space-y-8'>
       <VehicleInfo
         brandModel={brandModel}
         vehicle={vehicle}
@@ -44,7 +45,9 @@ export default async function SearchPage({
 
       <ActualOwner vehicle={vehicle} />
 
-      <p className='max-w-xl pt-8 text-center text-sm font-light'>
+      <VehicleTransfers vehicle={vehicle} />
+
+      <p className='mx-auto max-w-xl pt-8 text-center text-sm font-light'>
         La información que se ofrece en esta web obtenida de fuentes públicas es
         meramente informativa, y no se garantiza la exactitud de la información.
         Los logotipos y marcas comerciales del fabricante son propiedad de sus

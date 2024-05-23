@@ -22,8 +22,7 @@ export const ActualOwner = ({ vehicle }: { vehicle: Vehicle }) => {
         <Row
           label='Propietario desde'
           value={getRelativeTimeString({
-            startDateString:
-              vehicle.transferencias.at(-1)?.fecha_tramitacion ?? '',
+            startDateString: vehicle.transferencias.at(-1)?.fecha_tramite ?? '',
           })}
         />
 

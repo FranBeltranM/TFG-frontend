@@ -28,7 +28,10 @@ export const VehicleInfo = ({
       </Title>
 
       <div className='space-y-2 py-4 text-center'>
-        <BrandLogo brand={brandModel.marca} className='mx-auto h-40 w-auto' />
+        <BrandLogo
+          brand={brandModel.marca}
+          className='mx-auto h-40 w-auto dark:rounded-full dark:bg-dark-tremor-background-emphasis'
+        />
         <Row label='Marca' value={brandModel.marca} />
         <Row label='Modelo' value={brandModel.modelo} />
         <Row label='Combustible' value={vehicle.propulsion_itv.at(-1)?.valor} />
