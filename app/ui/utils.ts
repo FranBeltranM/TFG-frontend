@@ -89,5 +89,10 @@ export const getRelativeTimeString = ({
     months += 12
   }
 
-  return `${years} año${years !== 1 ? 's' : ''} ${months} mes${months !== 1 ? 'es' : ''} ${days} día${days !== 1 ? 's' : ''}`
+  const yearsText = years > 0 ? `${years} año${years !== 1 ? 's' : ''}` : ''
+  const monthsText =
+    months > 0 ? `${months} mes${months !== 1 ? 'es' : ''}` : ''
+  const daysText = days > 0 ? `${days} día${days !== 1 ? 's' : ''}` : ''
+
+  return `${yearsText} ${monthsText} ${daysText}`
 }
