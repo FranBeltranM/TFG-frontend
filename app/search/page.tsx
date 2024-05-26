@@ -45,12 +45,12 @@ export default async function SearchPage({
         technicalData={technicalData}
       />
 
+      <VehiclePlateInfo vehicle={vehicle} />
+
       <AmbientalDistintive
         typeFuel={vehicle.propulsion_itv}
         technicalData={technicalData}
       />
-
-      <VehiclePlateInfo vehicle={vehicle} />
 
       <ActualOwner vehicle={vehicle} />
 
