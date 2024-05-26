@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 
 // UI
 import { ActualOwner } from '@/app/ui/search/components/actual-owner'
+import { AmbientalDistintive } from '@/app/ui/search/components/ambiental-distintive'
+import { VehicleAlerts } from '@/app/ui/search/components/vehicle-alerts'
 import { VehicleInfo } from '@/app/ui/search/components/vehicle-info'
 import { VehiclePlateInfo } from '@/app/ui/search/components/vehicle-plate-info'
 import { VehicleTransfers } from '@/app/ui/search/components/vehicle-transfers'
@@ -35,9 +37,16 @@ export default async function SearchPage({
 
   return (
     <main className='mx-auto mt-8 flex max-w-screen-md flex-col space-y-8'>
+      <VehicleAlerts vehicle={vehicle} />
+
       <VehicleInfo
         brandModel={brandModel}
         vehicle={vehicle}
+        technicalData={technicalData}
+      />
+
+      <AmbientalDistintive
+        typeFuel={vehicle.propulsion_itv}
         technicalData={technicalData}
       />
 
