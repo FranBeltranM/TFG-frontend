@@ -30,7 +30,7 @@ export const VehicleInfo = ({
       <div className='space-y-2 py-4 text-center'>
         <BrandLogo
           brand={brandModel.marca}
-          className='mx-auto h-40 w-auto dark:rounded-full dark:bg-dark-tremor-background-emphasis'
+          className='mx-auto h-40 w-auto dark:rounded-lg dark:bg-dark-tremor-background-emphasis'
         />
         <Row label='Marca' value={brandModel.marca} />
         <Row label='Modelo' value={brandModel.modelo} />
