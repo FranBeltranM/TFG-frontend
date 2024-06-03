@@ -29,7 +29,7 @@ export const ColorModeSwitch = () => {
 
   return (
     <Button
-      className='border-none p-2 shadow-none drop-shadow-none hover:scale-125 hover:bg-transparent dark:hover:bg-transparent'
+      className='border-none p-2 !shadow-none !drop-shadow-none hover:scale-125 hover:bg-transparent dark:hover:bg-transparent'
       tooltipContent={resolvedTheme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
       onClick={(event) => {
         event.currentTarget.blur()

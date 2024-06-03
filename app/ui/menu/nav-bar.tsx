@@ -21,13 +21,13 @@ export const NavBar = () => {
 
           <div className='mx-auto flex gap-4'>
             <Link href='/'>
-              <Button className='border-none bg-transparent shadow-none drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
-                Inicio
+              <Button className='border-none bg-transparent !shadow-none !drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
+                Búsqueda Simple
               </Button>
             </Link>
             <Link className='pl-4' href='/stadistics'>
-              <Button className='border-none bg-transparent shadow-none drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
-                Estadísticas
+              <Button className='border-none bg-transparent !shadow-none !drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
+                Búsqueda Avanzada
               </Button>
             </Link>
           </div>
