@@ -7,7 +7,7 @@ import { type VehicleObject } from '@/app/modules/vehicle/domain/vehicle'
 import { type VehicleRepository } from '@/app/modules/vehicle/domain/vehicle-repository'
 
 const API_URLS = Object.freeze({
-  vehicle: (vin: string) => `${API_BASE}/vehicle?vin=${vin}`,
+  vehicle: (vin: string) => `${API_BASE}/vehicle-resolved?vin=${vin}`,
 })
 
 export class ApiVehicleRepository implements VehicleRepository {
