@@ -8,7 +8,7 @@ import { Card, SearchSelect, SearchSelectItem } from '@tremor/react'
 export const FitlerByProvinceTabSkeleton = () => {
   return (
     <Card>
-      <div className='h-10 w-full animate-pulse bg-gray-100 p-1 dark:bg-gray-700' />
+      <div className='h-10 w-full animate-pulse bg-tremor-background-emphasis/25 p-1 dark:bg-dark-tremor-background-subtle' />
     </Card>
   )
 }
@@ -23,8 +23,6 @@ export const FilterByProvinceTab = async ({
   if (!provinces || !provinces?.success) {
     return <div>Loading...</div>
   }
-
-  await new Promise((resolve) => setTimeout(resolve, 1000))
 
   return (
     <Card>

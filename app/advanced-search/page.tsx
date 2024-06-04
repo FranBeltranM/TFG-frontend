@@ -2,7 +2,10 @@
 import { Suspense } from 'react'
 
 // UI
-import { FilterByProvinceData } from '@/app/ui/advanced-search/components/filter-by-province-data'
+import {
+  FilterByProvinceData,
+  FilterByProvinceDataSkeleton,
+} from '@/app/ui/advanced-search/components/filter-by-province-data'
 import {
   FilterByProvinceTab,
   FitlerByProvinceTabSkeleton,
@@ -44,7 +47,11 @@ const SearchTypeTabs = async ({
       className='[&>div]:w-full [&>div]:justify-center'
       defaultIndex={defaultTab({ params })}
     >
-      <TabList className='flex items-center' variant='solid' defaultValue='1'>
+      <TabList
+        className='flex flex-col items-center md:flex-row'
+        variant='solid'
+        defaultValue='1'
+      >
         <Tab value='1'>Provincia de Matriculación</Tab>
         <Tab value='2'>Matriculado entre 2 fechas</Tab>
         <Tab value='3'>Indicadores</Tab>
@@ -54,12 +61,17 @@ const SearchTypeTabs = async ({
           <Suspense fallback={<FitlerByProvinceTabSkeleton />}>
             <FilterByProvinceTab defaultValue={province} />
           </Suspense>
-          <FilterByProvinceData
-            province={province}
-            skip={+page * +limit}
-            limit={+limit}
-            page={+page}
-          />
+          <Suspense
+            key={province + page + limit}
+            fallback={<FilterByProvinceDataSkeleton />}
+          >
+            <FilterByProvinceData
+              province={province}
+              skip={+page * +limit}
+              limit={+limit}
+              page={+page}
+            />
+          </Suspense>
         </TabPanel>
       </TabPanels>
     </TabGroup>
@@ -72,7 +84,7 @@ export default async function AdvancedSearchPage({
   searchParams: Record<string, string>
 }) {
   return (
-    <main className='mx-auto min-w-fit max-w-[80%] px-8'>
+    <main className='mx-auto min-w-fit max-w-[80%] md:px-8'>
       <section className='space-y-4'>
         <div className='flex flex-col items-center gap-2'>
           <Title className='font-bold'>Búsqueda avanzada</Title>
