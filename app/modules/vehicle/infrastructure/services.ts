@@ -1,11 +1,11 @@
 // Application
 import { getSeizedVehicles } from '@/app/modules/vehicle/application/get/get-seized-vehicles'
 import { getStolenVehicles } from '@/app/modules/vehicle/application/get/get-stolen-vehicles'
+import { getVehicle } from '@/app/modules/vehicle/application/get/get-vehicle'
 import { getVehiclesFilteredByRegisteredDates } from '@/app/modules/vehicle/application/get/get-vehicle-filtered-by-registered-dates'
-import { getVehicle } from '@/app/modules/vehicle/application/get/getVehicle'
 
 // Infrastructure
-import { getVehiclesFilteredByProvince } from '@/app/modules/vehicle/application/get/getVehiclesFilteredByProvince'
+import { getVehiclesFilteredByProvince } from '@/app/modules/vehicle/application/get/get-vehicles-filtered-by-province'
 import { ApiVehicleRepository } from '@/app/modules/vehicle/infrastructure/api-vehicle-repository'
 
 const vehicleRepo = new ApiVehicleRepository()
