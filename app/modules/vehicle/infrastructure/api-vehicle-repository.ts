@@ -21,6 +21,18 @@ const API_URLS = Object.freeze({
     limit: number
   }) =>
     `${API_BASE}/vehicle-registered-in-province?province=${province}&skip=${skip}&limit=${limit}`,
+  vehicleFilteredByRegisteredDates: ({
+    dateFrom,
+    dateTo,
+    skip,
+    limit,
+  }: {
+    dateFrom: string
+    dateTo: string
+    skip: number
+    limit: number
+  }) =>
+    `${API_BASE}/vehicles-registered-between-dates?startDate=${dateFrom}&endDate=${dateTo}&skip=${skip}&limit=${limit}`,
 })
 
 export class ApiVehicleRepository implements VehicleRepository {
@@ -64,6 +76,46 @@ export class ApiVehicleRepository implements VehicleRepository {
       const response = await fetcher({
         url: API_URLS.vehicleFilteredByProvince({
           province,
+          skip,
+          limit,
+        }),
+        method: 'GET',
+      })
+
+      if (!response.ok) {
+        throw new Error('Error fetching vehicles')
+      }
+
+      const data =
+        (await response.json()) as ResponseType<VehicleFilteredByProvinceObject>
+
+      if (!data.success) {
+        throw new Error(data.message)
+      }
+
+      return data
+    } catch (error) {
+      console.error(error)
+      return null
+    }
+  }
+
+  getVehiclesFilteredByRegisteredDates = async ({
+    dateFrom,
+    dateTo,
+    skip,
+    limit,
+  }: {
+    dateFrom: string
+    dateTo: string
+    skip: number
+    limit: number
+  }): Promise<ResponseType<VehicleFilteredByProvinceObject> | null> => {
+    try {
+      const response = await fetcher({
+        url: API_URLS.vehicleFilteredByRegisteredDates({
+          dateFrom,
+          dateTo,
           skip,
           limit,
         }),

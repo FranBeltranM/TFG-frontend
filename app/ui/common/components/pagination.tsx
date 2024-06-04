@@ -17,7 +17,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@/app/ui/common/icons/icons-svg'
 import { generatePagination } from '@/app/ui/utils'
 import { Card } from '@tremor/react'
 
-export const PaginationSkeleton = () => {
+export const PaginationSkeleton = ({ limit = 5 }: { limit?: number }) => {
   return (
     <Card className='grid animate-pulse grid-cols-3 items-center dark:border dark:border-tremor-content'>
       <div>
@@ -28,11 +28,12 @@ export const PaginationSkeleton = () => {
         <PaginationArrow direction='left' href='#' isDisabled={true} />
 
         <div className='flex -space-x-px'>
-          <div className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'></div>
-          <div className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'></div>
-          <div className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'></div>
-          <div className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'></div>
-          <div className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'></div>
+          {[...Array(limit)].map((_, index) => (
+            <div
+              key={index}
+              className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'
+            />
+          ))}
         </div>
 
         <PaginationArrow direction='right' href='#' isDisabled={true} />
@@ -102,7 +103,7 @@ const PaginationNumber = ({
   return isActive || position === 'middle' ? (
     <div className={className}>{page}</div>
   ) : (
-    <Link href={href} className={className}>
+    <Link href={href} className={className} scroll={false}>
       {page}
     </Link>
   )
@@ -139,7 +140,7 @@ const PaginationArrow = ({
   return isDisabled ? (
     <div className={className}>{icon}</div>
   ) : (
-    <Link className={className} href={href}>
+    <Link className={className} href={href} scroll={false}>
       {icon}
     </Link>
   )
@@ -183,9 +184,11 @@ const PaginationNumbers = ({
 export default function Pagination({
   totalPages,
   totalItems,
+  allowNext,
 }: {
-  totalPages: number
-  totalItems: number
+  totalPages: number | null
+  totalItems: number | null
+  allowNext?: boolean
 }) {
   const { replace } = useRouter()
   const pathname = usePathname()
@@ -206,12 +209,14 @@ export default function Pagination({
     replace(`${pathname}?${params.toString()}`)
   }
 
-  const count = `${totalItems > 0 ? currentPage * limit - limit + 1 : 0} - ${currentPage * limit > totalItems ? totalItems : currentPage * limit}`
+  const count = totalItems
+    ? `${totalItems > 0 ? currentPage * limit - limit + 1 : 0} - ${currentPage * limit > totalItems ? totalItems : currentPage * limit}`
+    : 0
 
   return (
     <Card className='grid grid-cols-1 items-center gap-4 dark:border dark:border-tremor-content dark:bg-dark-tremor-background-subtle md:grid-cols-[1fr_auto_1fr] lg:gap-0'>
       <div className='text-center lg:text-start'>
-        {count} / {totalItems}
+        {totalItems ? `Mostrando ${count} de ${totalItems} resultados` : ''}
       </div>
 
       <div className='inline-flex items-center justify-center'>
@@ -221,16 +226,18 @@ export default function Pagination({
           isDisabled={currentPage <= 1}
         />
 
-        <PaginationNumbers
-          currentPage={currentPage}
-          totalPages={totalPages}
-          createPageURL={createPageURL}
-        />
+        {totalPages && (
+          <PaginationNumbers
+            currentPage={currentPage}
+            totalPages={totalPages}
+            createPageURL={createPageURL}
+          />
+        )}
 
         <PaginationArrow
           direction='right'
           href={createPageURL(currentPage + 1)}
-          isDisabled={currentPage >= totalPages}
+          isDisabled={totalPages ? currentPage >= totalPages : allowNext}
         />
       </div>
 

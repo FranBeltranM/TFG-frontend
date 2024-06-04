@@ -16,4 +16,16 @@ export interface VehicleRepository {
     skip: number
     limit: number
   }) => Promise<ResponseType<VehicleFilteredByProvinceObject> | null>
+
+  getVehiclesFilteredByRegisteredDates: ({
+    dateFrom,
+    dateTo,
+    skip,
+    limit,
+  }: {
+    dateFrom: string
+    dateTo: string
+    skip: number
+    limit: number
+  }) => Promise<ResponseType<VehicleFilteredByProvinceObject> | null>
 }

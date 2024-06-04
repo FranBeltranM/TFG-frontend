@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import Link from 'next/link'
 
 // Services
-import { getVehiclesFilteredByProvinceService } from '@/app/modules/vehicle/infrastructure/services'
+import { getVehiclesFilteredByRegisteredDatesService } from '@/app/modules/vehicle/infrastructure/services'
 
 // UI
 import { Button } from '@/app/ui/common/components/button'
@@ -12,12 +12,16 @@ import Pagination, {
 } from '@/app/ui/common/components/pagination'
 import { Table, TableBody, TableHeader } from '@/app/ui/common/components/table'
 import { ArrowRightIcon } from '@/app/ui/common/icons/icons-svg'
-import { TableCell, TableHeaderCell, TableRow } from '@tremor/react'
+import { Card, TableCell, TableHeaderCell, TableRow } from '@tremor/react'
 
 // Utils
 import { formatDate } from '@/app/ui/utils'
 
-export const FilterByProvinceDataSkeleton = ({ limit }: { limit: number }) => {
+export const FilterByRegisteredDatesDataSkeleton = ({
+  limit = 5,
+}: {
+  limit: number
+}) => {
   return (
     <>
       <Table className={clsx('w-full table-fixed')}>
@@ -55,31 +59,43 @@ export const FilterByProvinceDataSkeleton = ({ limit }: { limit: number }) => {
   )
 }
 
-export const FilterByProvinceData = async ({
-  province,
+export const FilterByRegisteredDatesData = async ({
+  dateFrom,
+  dateTo,
   skip,
   limit,
   page,
 }: {
-  province: string | null
+  dateFrom: string | undefined
+  dateTo: string | undefined
   skip: number
   limit: number
   page: number
 }) => {
-  if (!province) return <></>
+  if (!dateFrom || !dateTo) return <></>
 
-  const results = await getVehiclesFilteredByProvinceService({
-    province,
+  const results = await getVehiclesFilteredByRegisteredDatesService({
+    dateFrom,
+    dateTo,
     skip,
     limit,
   })
 
-  if (!results || !results?.success) {
+  if (!results?.success) {
     return <div>Ha ocurrido un problema...</div>
   }
 
-  const totalPages = results.data.totalPages
-  const totalItems = results.data.total
+  if (results.data.results.length === 0) {
+    return (
+      <Card>
+        <div>No se encontraron resultados</div>
+      </Card>
+    )
+  }
+
+  const totalPages = null
+  const totalItems = null
+  const items = results.data.results.length
 
   return (
     <>
@@ -92,7 +108,6 @@ export const FilterByProvinceData = async ({
           </TableHeaderCell>
           <TableHeaderCell className='w-1/12'>Detalle</TableHeaderCell>
         </TableHeader>
-
         <TableBody className='dark:divide-tremor-content-emphasis dark:text-dark-tremor-content-strong'>
           {results.data.results.map((vehicle, index) => (
             <TableRow key={vehicle.bastidor_itv}>
@@ -118,7 +133,11 @@ export const FilterByProvinceData = async ({
         </TableBody>
       </Table>
 
-      <Pagination totalItems={totalItems} totalPages={totalPages} />
+      <Pagination
+        totalPages={totalPages}
+        totalItems={totalItems}
+        allowNext={items < limit}
+      />
     </>
   )
 }

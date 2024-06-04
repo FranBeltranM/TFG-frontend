@@ -1,4 +1,5 @@
 // Application
+import { getVehiclesFilteredByRegisteredDates } from '@/app/modules/vehicle/application/get/get-vehicle-filtered-by-registered-dates'
 import { getVehicle } from '@/app/modules/vehicle/application/get/getVehicle'
 
 // Infrastructure
@@ -22,6 +23,25 @@ export const getVehiclesFilteredByProvinceService = async ({
 }) => {
   return await getVehiclesFilteredByProvince(vehicleRepo)({
     province,
+    skip,
+    limit,
+  })
+}
+
+export const getVehiclesFilteredByRegisteredDatesService = async ({
+  dateFrom,
+  dateTo,
+  skip,
+  limit,
+}: {
+  dateFrom: string
+  dateTo: string
+  skip: number
+  limit: number
+}) => {
+  return await getVehiclesFilteredByRegisteredDates(vehicleRepo)({
+    dateFrom,
+    dateTo,
     skip,
     limit,
   })

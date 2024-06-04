@@ -7,8 +7,9 @@ import { Card, SearchSelect, SearchSelectItem } from '@tremor/react'
 
 export const FitlerByProvinceTabSkeleton = () => {
   return (
-    <Card>
-      <div className='h-10 w-full animate-pulse bg-tremor-background-emphasis/25 p-1 dark:bg-dark-tremor-background-subtle' />
+    <Card className='space-y-5'>
+      <div className='h-10 w-full animate-pulse rounded-lg bg-tremor-background-emphasis/25 p-1 dark:bg-dark-tremor-background-subtle' />
+      <div className='mx-auto h-10 w-full animate-pulse rounded-lg bg-tremor-background-emphasis/25 p-1 dark:bg-dark-tremor-background-subtle' />
     </Card>
   )
 }
@@ -33,7 +34,11 @@ export const FilterByProvinceTab = async ({
           defaultValue={defaultValue}
         >
           {provinces.data.map((province) => (
-            <SearchSelectItem key={province.value} value={province.value}>
+            <SearchSelectItem
+              key={province.value}
+              value={province.value}
+              aria-required
+            >
               {province.label}
             </SearchSelectItem>
           ))}
