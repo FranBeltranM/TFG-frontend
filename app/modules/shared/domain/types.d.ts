@@ -1,4 +1,4 @@
-export type Response<T> =
+export type ResponseType<T> =
   | {
       success: true
       data: T

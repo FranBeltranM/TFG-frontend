@@ -146,3 +146,29 @@ export const LoadingIcon = ({ className = '' }: { className?: string }) => {
     </BaseIcon>
   )
 }
+
+export const ArrowLeftIcon = ({ className }: { className?: string }) => {
+  return (
+    <BaseIcon className={className}>
+      <path
+        d='M19 12H5M5 12L12 19M5 12L12 5'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </BaseIcon>
+  )
+}
+
+export const ArrowRightIcon = ({ className }: { className?: string }) => {
+  return (
+    <BaseIcon className={className}>
+      <path
+        d='M4 12H20M20 12L14 6M20 12L14 18'
+        strokeWidth='2'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </BaseIcon>
+  )
+}
