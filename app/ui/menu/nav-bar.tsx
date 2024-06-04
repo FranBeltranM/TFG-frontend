@@ -25,7 +25,7 @@ export const NavBar = () => {
                 Búsqueda Simple
               </Button>
             </Link>
-            <Link className='pl-4' href='/stadistics'>
+            <Link className='pl-4' href='/advanced-search'>
               <Button className='border-none bg-transparent !shadow-none !drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
                 Búsqueda Avanzada
               </Button>

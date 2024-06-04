@@ -115,3 +115,17 @@ export interface VehicleObject {
   technical_data: VehicleTechnicalData
   vehicle: Vehicle
 }
+
+export interface VehicleFilteredByProvince {
+  bastidor_itv: string
+  fecha_matricula: Array<{
+    fecha: string
+  }>
+}
+
+export interface VehicleFilteredByProvinceObject {
+  results: VehicleFilteredByProvince[]
+  total: number
+  page: number
+  totalPages: number
+}
