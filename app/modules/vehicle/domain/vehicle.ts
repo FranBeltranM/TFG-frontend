@@ -123,6 +123,23 @@ export interface VehicleRegisteredFiltered {
   }>
 }
 
+export interface VehicleStolenSeizedFiltered {
+  bastidor_itv: string
+  indicadores: {
+    precinto: 'SI' | ''
+    embargo: 'SI' | ''
+    baja_definitiva: string
+    baja_temporal: 'S' | 'N' | ''
+    sustraccion: 'S' | ''
+    baja_telematica: string
+    nuevo_usado: string
+    persona_fisica_juridica: 'D' | 'X'
+    renting: 'S' | 'N' | ''
+    tutela: 'S' | 'N' | ''
+    fecha: string
+  }
+}
+
 export interface VehicleFilteredByProvinceObject {
   results: VehicleRegisteredFiltered[]
   total: number
@@ -132,6 +149,11 @@ export interface VehicleFilteredByProvinceObject {
 
 export interface VehicleFilteredByRegisteredDatesObject {
   results: VehicleRegisteredFiltered[]
+  page: number
+}
+
+export interface VehicleFilteredByStolenSeizedObject {
+  results: VehicleStolenSeizedFiltered[]
   total: number
   page: number
   totalPages: number

@@ -1,4 +1,5 @@
 // Libs
+import Link from 'next/link'
 import { Suspense } from 'react'
 
 // UI
@@ -11,6 +12,19 @@ import {
   FitlerByProvinceTabSkeleton,
 } from '@/app/ui/advanced-search/components/filter-by-province-tab'
 import {
+  FilterByRegisteredDatesData,
+  FilterByRegisteredDatesDataSkeleton,
+} from '@/app/ui/advanced-search/components/filter-by-registered-dates-data'
+import { FilterByRegisteredDatesTab } from '@/app/ui/advanced-search/components/filter-by-registered-dates-tab'
+import {
+  FilterSeizedData,
+  FilterSeizedDataSkeleton,
+} from '@/app/ui/advanced-search/components/filter-seized-data'
+import {
+  FilterStolenData,
+  FilterStolenDataSkeleton,
+} from '@/app/ui/advanced-search/components/filter-stolen-data'
+import {
   Tab,
   TabGroup,
   TabList,
@@ -18,43 +32,28 @@ import {
   TabPanels,
   Title,
 } from '@tremor/react'
-import Link from 'next/link'
-import {
-  FilterByRegisteredDatesData,
-  FilterByRegisteredDatesDataSkeleton,
-} from '../ui/advanced-search/components/filter-by-registered-dates-data'
-import { FilterByRegisteredDatesTab } from '../ui/advanced-search/components/filter-by-registered-dates-tab'
+
+const defaultTab = ({ params }: { params: Record<string, string> }) => {
+  const { filter, province, dateFrom, dateTo } = params
+
+  const filtersRoutes: Record<string, number> = {
+    stolen: 2,
+    seized: 3,
+  }
+
+  if (filter !== undefined) return filtersRoutes[filter] || 0
+  if (dateFrom !== undefined && dateTo !== undefined) return 1
+  if (province !== undefined) return 0
+
+  return 0
+}
 
 const SearchTypeTabs = async ({
   params,
 }: {
   params: Record<string, string>
 }) => {
-  const { province, page = 0, limit = 5, dateFrom, dateTo } = params
-
-  const defaultTab = ({ params }: { params: Record<string, string> }) => {
-    if (params.province !== undefined) {
-      return 0
-    }
-
-    if (params.dateFrom !== undefined && params.dateTo !== undefined) {
-      return 1
-    }
-
-    if (params.indicators !== undefined) {
-      return 2
-    }
-
-    if (params.show === 'stolen') {
-      return 3
-    }
-
-    if (params.show === 'seized') {
-      return 4
-    }
-
-    return 0
-  }
+  const { province, page = 0, limit = 5, dateFrom, dateTo, filter } = params
 
   return (
     <TabGroup
@@ -64,14 +63,17 @@ const SearchTypeTabs = async ({
       <TabList
         className='flex flex-col items-center md:flex-row'
         variant='solid'
-        defaultValue='1'
       >
-        <Tab value='1'>Provincia de Matriculación</Tab>
-        <Tab value='2'>Matriculado entre 2 fechas</Tab>
-        <Link href='/advanced-search?show=stolen' scroll={false}>
+        <Link href='/advanced-search' scroll={false}>
+          <Tab value='1'>Provincia de Matriculación</Tab>
+        </Link>
+        <Link href='/advanced-search' scroll={false}>
+          <Tab value='2'>Matriculado entre 2 fechas</Tab>
+        </Link>
+        <Link href='/advanced-search?filter=stolen' scroll={false}>
           <Tab value='3'>Robados</Tab>
         </Link>
-        <Link href='/advanced-search?show=seized' scroll={false}>
+        <Link href='/advanced-search?filter=seized' scroll={false}>
           <Tab value='4'>Embargados</Tab>
         </Link>
       </TabList>
@@ -111,6 +113,30 @@ const SearchTypeTabs = async ({
             />
           </Suspense>
         </TabPanel>
+        <TabPanel>
+          <Suspense
+            key={filter + page + limit}
+            fallback={<FilterStolenDataSkeleton limit={+limit} />}
+          >
+            <FilterStolenData
+              skip={+page > 1 ? +page * +limit : 0}
+              limit={+limit}
+              page={+page}
+            />
+          </Suspense>
+        </TabPanel>
+        <TabPanel>
+          <Suspense
+            key={filter + page + limit}
+            fallback={<FilterSeizedDataSkeleton limit={+limit} />}
+          >
+            <FilterSeizedData
+              skip={+page > 1 ? +page * +limit : 0}
+              limit={+limit}
+              page={+page}
+            />
+          </Suspense>
+        </TabPanel>
       </TabPanels>
     </TabGroup>
   )
@@ -122,7 +148,7 @@ export default async function AdvancedSearchPage({
   searchParams: Record<string, string>
 }) {
   return (
-    <main className='mx-auto max-w-fit md:px-8 lg:max-w-[75vw] xl:max-w-[60vw]'>
+    <main className='mx-auto max-w-[80vw] md:px-8 lg:max-w-[75vw] xl:max-w-[60vw]'>
       <section className='space-y-4'>
         <div className='flex flex-col items-center gap-2'>
           <Title className='font-bold'>Búsqueda avanzada</Title>

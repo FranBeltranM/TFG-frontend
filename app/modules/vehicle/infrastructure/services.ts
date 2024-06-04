@@ -1,4 +1,6 @@
 // Application
+import { getSeizedVehicles } from '@/app/modules/vehicle/application/get/get-seized-vehicles'
+import { getStolenVehicles } from '@/app/modules/vehicle/application/get/get-stolen-vehicles'
 import { getVehiclesFilteredByRegisteredDates } from '@/app/modules/vehicle/application/get/get-vehicle-filtered-by-registered-dates'
 import { getVehicle } from '@/app/modules/vehicle/application/get/getVehicle'
 
@@ -45,4 +47,24 @@ export const getVehiclesFilteredByRegisteredDatesService = async ({
     skip,
     limit,
   })
+}
+
+export const getStolenVehiclesService = async ({
+  skip,
+  limit,
+}: {
+  skip: number
+  limit: number
+}) => {
+  return await getStolenVehicles(vehicleRepo)({ skip, limit })
+}
+
+export const getSeizedVehiclesService = async ({
+  skip,
+  limit,
+}: {
+  skip: number
+  limit: number
+}) => {
+  return await getSeizedVehicles(vehicleRepo)({ skip, limit })
 }
