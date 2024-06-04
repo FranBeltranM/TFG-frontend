@@ -20,11 +20,13 @@ export const FilterByProvinceData = async ({
   limit,
   page,
 }: {
-  province: string
+  province: string | null
   skip: number
   limit: number
   page: number
 }) => {
+  if (!province) return <></>
+
   const results = await getVehiclesFilteredByProvinceService({
     province,
     skip,
