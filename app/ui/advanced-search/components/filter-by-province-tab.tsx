@@ -5,7 +5,7 @@ import { getProvincesCodeService } from '@/app/modules/constants/infrastructure/
 import { Button } from '@/app/ui/common/components/button'
 import { Card, SearchSelect, SearchSelectItem } from '@tremor/react'
 
-export const FitlerByProvinceTabSkeleton = () => {
+export const FilterByProvinceSkeleton = () => {
   return (
     <Card className='space-y-5'>
       <div className='h-10 w-full animate-pulse rounded-lg bg-tremor-background-emphasis/25 p-1 dark:bg-dark-tremor-background-subtle' />
@@ -14,7 +14,7 @@ export const FitlerByProvinceTabSkeleton = () => {
   )
 }
 
-export const FilterByProvinceTab = async ({
+export const FilterByProvince = async ({
   defaultValue,
 }: {
   defaultValue?: string
