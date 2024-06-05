@@ -19,6 +19,8 @@ export const FilterBySeizedTab = ({
 }) => {
   if (filter !== 'seized') return <></>
 
+  console.log({ page })
+
   return (
     <TabPanel>
       <Suspense
@@ -26,7 +28,7 @@ export const FilterBySeizedTab = ({
         fallback={<FilterSeizedDataSkeleton limit={+limit} />}
       >
         <FilterSeizedData
-          skip={+page > 1 ? +page * +limit : 0}
+          skip={+page > 1 ? +page * +limit - limit : 0}
           limit={+limit}
           page={+page}
         />

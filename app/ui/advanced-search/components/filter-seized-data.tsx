@@ -81,6 +81,8 @@ export const FilterSeizedData = async ({
     )
   }
 
+  console.log(results)
+
   const totalPages = results.data.totalPages
   const totalItems = results.data.total
 

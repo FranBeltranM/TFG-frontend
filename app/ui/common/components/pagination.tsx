@@ -210,7 +210,7 @@ export default function Pagination({
   }
 
   const count = totalItems
-    ? `${totalItems > 0 ? currentPage * limit - limit + 1 : 0} - ${currentPage * limit > totalItems ? totalItems : currentPage * limit}`
+    ? `${currentPage * limit - limit + 1} - ${currentPage * limit > totalItems ? totalItems : currentPage * limit}`
     : 0
 
   return (

@@ -34,7 +34,7 @@ export const FilterByDatesTab = ({
         <FilterByRegisteredDatesData
           dateFrom={dateFrom}
           dateTo={dateTo}
-          skip={+page > 1 ? +page * +limit : 0}
+          skip={+page > 1 ? +page * +limit - limit : 0}
           limit={+limit}
           page={+page}
         />
