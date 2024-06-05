@@ -96,7 +96,14 @@ const getDistintive = ({
     }
 
     if (euro.includes('3') || euro.includes('III')) {
-      return 'B'
+      return (
+        <Image
+          src='/logos/dgt/distintivo_b.webp'
+          width={200}
+          height={200}
+          alt='Distintivo B'
+        />
+      )
     }
   }
 
