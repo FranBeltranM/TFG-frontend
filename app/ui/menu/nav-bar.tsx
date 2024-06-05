@@ -22,12 +22,14 @@ export const NavBar = () => {
           <div className='mx-auto flex gap-4'>
             <Link href='/'>
               <Button className='border-none bg-transparent !shadow-none !drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
-                Búsqueda Simple
+                <span className='hidden md:block'>Búsqueda Simple</span>
+                <span className='md:hidden'>Simple</span>
               </Button>
             </Link>
             <Link className='pl-4' href='/advanced-search'>
               <Button className='border-none bg-transparent !shadow-none !drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
-                Búsqueda Avanzada
+                <span className='hidden md:block'>Búsqueda Avanzada</span>
+                <span className='md:hidden'>Avanzada</span>
               </Button>
             </Link>
           </div>
