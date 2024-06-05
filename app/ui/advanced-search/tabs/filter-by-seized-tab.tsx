@@ -19,8 +19,6 @@ export const FilterBySeizedTab = ({
 }) => {
   if (filter !== 'seized') return <></>
 
-  console.log({ page })
-
   return (
     <TabPanel>
       <Suspense
