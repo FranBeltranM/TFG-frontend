@@ -32,6 +32,16 @@ export const NavBar = () => {
                 <span className='md:hidden'>Avanzada</span>
               </Button>
             </Link>
+
+            <Link
+              className='hidden pl-4 md:block'
+              href='https://api-tfg.franbeltran.es/api/v1/docs/'
+              target='_blank'
+            >
+              <Button className='border-none bg-transparent !shadow-none !drop-shadow-none hover:scale-110 dark:text-dark-tremor-content-emphasis'>
+                <span className='hidden md:block'>API</span>
+              </Button>
+            </Link>
           </div>
 
           <div className='ml-auto'>
