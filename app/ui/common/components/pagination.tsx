@@ -17,10 +17,10 @@ import { ArrowLeftIcon, ArrowRightIcon } from '@/app/ui/common/icons/icons-svg'
 import { generatePagination } from '@/app/ui/utils'
 import { Card } from '@tremor/react'
 
-export const PaginationSkeleton = ({ limit = 5 }: { limit?: number }) => {
+export const PaginationSkeleton = () => {
   return (
-    <Card className='grid animate-pulse grid-cols-3 items-center dark:border dark:border-tremor-content'>
-      <div>
+    <Card className='grid grid-cols-1 items-center gap-4 dark:border dark:border-tremor-content dark:bg-dark-tremor-background-subtle md:grid-cols-[1fr_auto_1fr] lg:gap-0'>
+      <div className='mx-auto md:mx-0 md:mr-auto'>
         <div className='h-6 w-24 rounded-lg bg-tremor-background-emphasis/25 dark:bg-dark-tremor-background-subtle' />
       </div>
 
@@ -28,7 +28,7 @@ export const PaginationSkeleton = ({ limit = 5 }: { limit?: number }) => {
         <PaginationArrow direction='left' href='#' isDisabled={true} />
 
         <div className='flex -space-x-px'>
-          {[...Array(limit)].map((_, index) => (
+          {[...Array(3)].map((_, index) => (
             <div
               key={index}
               className='size-10 items-center justify-center rounded-md border border-tremor-border dark:border-dark-tremor-content-subtle'
@@ -39,9 +39,9 @@ export const PaginationSkeleton = ({ limit = 5 }: { limit?: number }) => {
         <PaginationArrow direction='right' href='#' isDisabled={true} />
       </div>
 
-      <div className='flex items-center justify-end gap-2'>
-        <div className='h-8 w-24 rounded-lg bg-tremor-background-emphasis/25 dark:bg-dark-tremor-background-subtle' />
-        <div className='h-8 w-24 rounded-lg bg-tremor-background-emphasis/25 dark:bg-dark-tremor-background-subtle' />
+      <div className='flex items-center justify-center gap-2 lg:justify-end'>
+        <div className='h-8 w-12 rounded-lg bg-tremor-background-emphasis/25 dark:bg-dark-tremor-background-subtle' />
+        <div className='h-8 w-12 rounded-lg bg-tremor-background-emphasis/25 dark:bg-dark-tremor-background-subtle' />
       </div>
     </Card>
   )
@@ -214,7 +214,7 @@ export default function Pagination({
     : 0
 
   return (
-    <Card className='grid grid-cols-1 items-center gap-4 dark:border dark:border-tremor-content dark:bg-dark-tremor-background-subtle md:grid-cols-[1fr_auto_1fr] lg:gap-0'>
+    <Card className='grid grid-cols-1 items-center gap-4 dark:border dark:border-tremor-content dark:bg-dark-tremor-background-subtle lg:grid-cols-[1fr_auto_1fr] lg:gap-0'>
       <div className='text-center lg:text-start'>
         {totalItems ? `Mostrando ${count} de ${totalItems} resultados` : ''}
       </div>

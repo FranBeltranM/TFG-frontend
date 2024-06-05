@@ -50,7 +50,7 @@ export const FilterByProvinceDataSkeleton = ({ limit }: { limit: number }) => {
         </TableBody>
       </Table>
 
-      <PaginationSkeleton limit={limit} />
+      <PaginationSkeleton />
     </>
   )
 }

@@ -50,7 +50,7 @@ export const FilterSeizedDataSkeleton = ({ limit = 5 }: { limit: number }) => {
         </TableBody>
       </Table>
 
-      <PaginationSkeleton limit={limit} />
+      <PaginationSkeleton />
     </>
   )
 }

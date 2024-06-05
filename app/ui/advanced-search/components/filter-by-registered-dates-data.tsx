@@ -54,7 +54,7 @@ export const FilterByRegisteredDatesDataSkeleton = ({
         </TableBody>
       </Table>
 
-      <PaginationSkeleton limit={limit} />
+      <PaginationSkeleton />
     </>
   )
 }
