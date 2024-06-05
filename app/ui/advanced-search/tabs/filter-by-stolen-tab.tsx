@@ -17,6 +17,8 @@ export const FilterByStolenTab = ({
   page: number
   limit: number
 }) => {
+  if (filter !== 'stolen') return <></>
+
   return (
     <TabPanel>
       <Suspense
