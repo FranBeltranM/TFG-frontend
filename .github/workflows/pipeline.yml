@@ -102,3 +102,17 @@ jobs:
             npm install
             npm run build
             pm2 restart ecosystem.config.cjs --env production
+      - name: Deploy without install
+        if: steps.changed-package-json.outputs.any_changed == 'false'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_SERVER }}
+          username: ${{ secrets.USER_SERVER }}
+          password: ${{ secrets.PASSWORD_SERVER }}
+          script: |
+            cd /root/repos/web
+            pm2 stop ecosystem.config.cjs
+            git reset --hard HEAD
+            git pull origin develop
+            npm run build
+            pm2 restart ecosystem.config.cjs --env production
