@@ -91,8 +91,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Check if package.json has changed
         id: changed-package-json
         uses: tj-actions/changed-files@v44
@@ -123,6 +121,7 @@ jobs:
           password: ${{ secrets.PASSWORD_SERVER }}
           script: |
             cd /var/deploy/checkv.web
+            ls -la
             pm2 stop ecosystem.config.cjs
             git reset --hard HEAD
             git pull origin main
