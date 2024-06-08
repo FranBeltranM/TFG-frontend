@@ -25,7 +25,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm install
+      - name: Install dependencies
+        run: npm ci
 
   lint:
     needs: install
@@ -43,7 +44,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm run lint
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint code
+        run: npm run lint
 
   build:
     needs: install
@@ -61,7 +65,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm run build
+      - name: Install dependencies
+        run: npm ci
+      - name: Build code
+        run: npm run build
 
   deploy:
     needs: [install, build]
