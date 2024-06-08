@@ -83,7 +83,7 @@ jobs:
         run: npm run build
 
   deploy:
-    needs: [install, build]
+    needs: [lint, build]
     runs-on: ubuntu-latest
     strategy:
       matrix:
